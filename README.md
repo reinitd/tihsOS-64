@@ -2,22 +2,20 @@
 
 64 bit OS.
 
-Make the docker image
-```sh
-$ docker build buildenv -t tihsos-64-buildenv
+Install the following dependencies using your package manager (or aur helper if you use arch btw)
+```
+mtools
+xorriso
+nasm
+grub-pc-bin
+grub-common
+
+ld (should be installed by default)
+gcc (should be installed by default)
 ```
 
-Enter the docker image on Linux/MacOS:
-```sh
-$ docker run --rm -it -v $pwd:/root/env tihsos-64-buildenv
-# if that errors:
-$ docker run --rm -it -v $(pwd):/root/env tihsos-64-buildenv
-```
-
-Enter the docker image on Windows:
-```sh
-$ docker run --rm -it -v %cd%:/root/env tihsos-64-buildenv
-```
+**If you want to build this using Windows, I suggest using WSL2. \
+It's what I use when im on Windows. Ubuntu WSL2.**
 
 Build the ISO
 ```sh

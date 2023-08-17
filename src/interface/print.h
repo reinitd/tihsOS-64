@@ -1,6 +1,7 @@
 #pragma once
 
 #include <stdint.h>
+#include <stdio.h>
 #include <stddef.h>
 
 enum {
@@ -22,7 +23,8 @@ enum {
     WHITE   = 15,
 };
 
-void print_clear();
+void clear();
 void print_char(char character);
+void cprint(char* string, uint8_t fg, uint8_t bg);
 void print(char* string);
-void print_set_color(uint8_t fg, uint8_t bg);
+void print_newline();

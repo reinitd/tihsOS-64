@@ -14,7 +14,7 @@ long_mode_start:
     mov gs, ax
 
     ;; Print 'OK'
-    ;; mov dword [0xb8000], 0x2f4b2f4f
+    mov dword [0xb8000], 0x2f4b2f4f
     
     call kernel_main
     hlt

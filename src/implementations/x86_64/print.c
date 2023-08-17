@@ -1,4 +1,5 @@
 #include "print.h"
+#include <stdio.h>
 
 const static size_t NUM_COLS = 80;
 const static size_t NUM_ROWS = 25;
@@ -24,7 +25,7 @@ void clear_row(size_t row) {
     }
 }
 
-void print_clear() {
+void clear() {
     for (size_t i = 0; i < NUM_ROWS; i++) {
         clear_row(i);
     }
@@ -78,6 +79,13 @@ void print(char* str) {
     }
 }
 
-void print_set_color(uint8_t fg, uint8_t bg) {
+
+void cprint(char* string, uint8_t fg, uint8_t bg) {
     color = fg + (bg << 4);
+    print(string); 
+    color = WHITE + (BLACK << 4);
 }
+
+// void print_set_color(uint8_t fg, uint8_t bg) {
+//     color = fg + (bg << 4);
+// }

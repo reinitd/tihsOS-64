@@ -53,7 +53,7 @@ start:
     lgdt [gdt64.pointer] ;; Load the GDT by providing a dereferenced (brackets) pointer.
     jmp gdt64.code_segment:long_mode_start ;; Load the code segment into the code selector, or something. IDK what this really does.
 
-    hlt ;; halt the cpu
+    hlt                  ;; halt the cpu
 
 check_multiboot:
     cmp eax, 0x36d76289 ;; Most popular bootloaders store this value in the `eax` register.
