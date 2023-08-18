@@ -104,3 +104,7 @@ void cprint(char* string, uint8_t fg, uint8_t bg) {
     print(string); 
     color = WHITE + (BLACK << 4);
 }
+
+// void printf(char* string1, char* string2) {
+//     print(string1); print(string2); print("\n");
+// }
