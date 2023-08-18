@@ -18,10 +18,22 @@ void clear_row(size_t row) {
     struct Char empty = (struct Char) {
         character: ' ',
         color: color,
-    };
+    };  
 
     for (size_t col = 0; col < NUM_COLS; col++) {
         buffer[col + NUM_COLS * row] = empty;
+    }
+}
+
+void go_backspace() {
+    if (col > 0) { // check if the cursor shit is not at the start of a row
+        col--;
+        
+        // fill that bitch in w a empty Char type
+        buffer[col + NUM_COLS * row] = (struct Char) {
+            .character = ' ',
+            .color = color,
+        };
     }
 }
 
@@ -29,24 +41,31 @@ void clear() {
     for (size_t i = 0; i < NUM_ROWS; i++) {
         clear_row(i);
     }
+    col = 0;
+    row = 0; // Reset the cursor to the first row
 }
 
 void print_newline() {
     col = 0;
 
-    if (row < NUM_ROWS - 1) {
+    if (row < NUM_ROWS - 1) { // Normal function, if there is room left.
         row++;
         return;
     }
+    
+    clear(); return;
 
-    for (size_t row = 1; row < NUM_ROWS; row++) {
-        for (size_t col = 0; col < NUM_COLS; col++) {
-            struct Char character = buffer[col + NUM_COLS * row];
-            buffer[col + NUM_COLS * (row - 1)] = character;
-        }
-    }
+    // Used for if you want the page to keep "scrolling down".
+    // VERY BUGGY
+    //
+    // for (size_t row = 1; row < NUM_ROWS; row++) {
+    //     for (size_t col = 0; col < NUM_COLS; col++) {
+    //         struct Char character = buffer[col + NUM_COLS * row];
+    //         buffer[col + NUM_COLS * (row - 1)] = character;
+    //     }
+    // }
 
-    clear_row(NUM_COLS - 1);
+    // clear_row(NUM_COLS - 1);
 }
 
 void print_char(char character) {
@@ -85,7 +104,3 @@ void cprint(char* string, uint8_t fg, uint8_t bg) {
     print(string); 
     color = WHITE + (BLACK << 4);
 }
-
-// void print_set_color(uint8_t fg, uint8_t bg) {
-//     color = fg + (bg << 4);
-// }

@@ -28,3 +28,4 @@ void print_char(char character);
 void cprint(char* string, uint8_t fg, uint8_t bg);
 void print(char* string);
 void print_newline();
+void go_backspace();
